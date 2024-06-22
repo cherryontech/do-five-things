@@ -1,6 +1,6 @@
 import { TurboMount } from "turbo-mount";
 // import { registerComponent } from "turbo-mount/vue";
-import { registerComponents } from "turbo-mount/registerComponents/vite";
+import { registerComponents } from "turbo-mount/registerComponents/vue";
 
 const turboMount = new TurboMount();
 
