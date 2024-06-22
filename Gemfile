@@ -69,3 +69,5 @@ group :test do
 end
 
 gem "turbo-mount", "~> 0.3.1"
+
+gem "tailwindcss-rails", "~> 2.6"
