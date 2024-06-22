@@ -1,5 +1,6 @@
 import { TurboMount } from "turbo-mount";
-import { registerComponent } from "turbo-mount/vue";
+// import { registerComponent } from "turbo-mount/vue";
+import { registerComponents } from "turbo-mount/registerComponents/vite";
 
 const turboMount = new TurboMount();
 
@@ -10,7 +11,7 @@ const turboMount = new TurboMount();
 // registerComponent(turboMount, "Hello", Hello, HelloController); // where HelloController is a Stimulus controller extended from TurboMountController
 
 // If you want to automatically register components use:
-// import { registerComponents } from "turbo-mount/registerComponents/vue";
-// const controllers = import.meta.glob("/controllers/**/*_controller.js", { eager: true });
-// const components = import.meta.glob("/components/**/*.jsx", { eager: true });
-// registerComponents({ turboMount, components, controllers });
+
+const controllers = import.meta.glob("/controllers/**/*_controller.js", { eager: true });
+const components = import.meta.glob("/components/**/*.vue", { eager: true });
+registerComponents({ turboMount, components, controllers });
