@@ -5,6 +5,7 @@
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.4",
     "@vitejs/plugin-vue": "^5.0.5",
+    "stimulus-vite-helpers": "^3.1.0",
     "turbo-mount": "^0.3.1",
     "vue": "^3.4.30"
   },

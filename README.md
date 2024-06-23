@@ -31,8 +31,13 @@ Do Five Things is a web application built with Ruby on Rails that helps users ma
   ```
 4. Start the server:
   ```bash
-  bin/rails server
+  web: env RUBY_DEBUG_OPEN=true bin/rails server
+  vite: bin/vite dev
+  css: bin/rails tailwindcss:watch
   ```
+5. Alternatively `./bin/dev` will start `Procfile.dev` which will run all the commands together. 
+Running the commands separately might be useful for debugging 😅
+
 
 ## Usage
 To use the application, open your web browser and navigate to http://localhost:3000.
