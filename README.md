@@ -15,6 +15,7 @@ Do Five Things is a web application built with Ruby on Rails that helps users ma
 ## Ruby and Rails Versions
 - **Ruby version:** 3.1.2
 - **Rails version:** 7.1.3.4
+- **PostgreSQL version** 15.7
 
 ## Bundler Version
 - **Bundler version:** 2.5.4
@@ -33,6 +34,8 @@ Do Five Things is a web application built with Ruby on Rails that helps users ma
   ```bash
   cd do-five-things
   ```
+3. Install postgresql
+
 3. Install dependencies:
   ```bash
   bundle install
@@ -42,7 +45,7 @@ Do Five Things is a web application built with Ruby on Rails that helps users ma
 1. Start the server:
   ```bash
   web: env RUBY_DEBUG_OPEN=true bin/rails server
-  vite: bin/vite dev
+  vite: bin/vite build --clear --mode=development
   ```
 2. Alternatively `./bin/dev` will start `Procfile.dev` which will run all the commands together. 
 Running the commands separately might be useful for debugging 😅
