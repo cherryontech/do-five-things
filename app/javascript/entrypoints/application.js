@@ -28,4 +28,3 @@ console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify
 // import '~/index.css'
 import "@hotwired/turbo-rails"
 import "../controllers"
-import "../turbo-mount"
