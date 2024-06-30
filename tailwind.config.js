@@ -8,7 +8,7 @@ module.exports = {
     './app/helpers/**/*.rb',
     './app/javascript/**/*.{js,jsx,ts,tsx,vue}',
     './app/views/**/*.{html,html.erb,erb}',
-    './app/assets/stylesheets/**/*.css',
+    './app/frontend/**/*.{js,jsx,ts,tsx,svelte,vue}',
   ],
   theme: {
     extend: {
