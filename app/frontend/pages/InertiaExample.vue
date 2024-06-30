@@ -19,8 +19,8 @@
     <h2 class="h2">Inertia + Vite Ruby + Vue</h2>
 
     <div class="card">
-      <button class="button" type="button" @click="count++">
-        count is {{ count }}
+      <button class="button" type="button" @click="increaseCounter">
+        count is {{ countInternal }}
       </button>
       <p>
         Edit <code>app/frontend/pages/InertiaExample.vue</code> and save to test
@@ -34,18 +34,29 @@
 </template>
 
 <script setup>
-import { Head } from '@inertiajs/vue3'
+import { Head, router } from '@inertiajs/vue3'
 import { ref } from 'vue'
 
 import vueSvg from '/assets/vue.svg'
 import inertiaSvg from '/assets/inertia.svg'
 import viteRubySvg from '/assets/vite_ruby.svg'
 
-defineProps({
+const props = defineProps({
   name: String,
+  count: {
+    type: Number,
+    default: 99
+  }
 })
 
-const count = ref(0)
+
+const countInternal = ref(props.count)
+const incrementBy = 9
+
+const increaseCounter = () => {
+  countInternal.value += incrementBy
+  router.post('/inertia-example', { count: countInternal.value })
+}
 </script>
 
 <style scoped>
