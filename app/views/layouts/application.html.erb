@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>DoFiveThings</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -22,8 +22,14 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <header>
+      <%= turbo_mount("PageHeader") %>
+    </header>
+    <main>
       <%= yield %>
     </main>
+    <footer class="border">
+      <%= turbo_mount("NavBar") %>
+    </footer>
   </body>
 </html>
