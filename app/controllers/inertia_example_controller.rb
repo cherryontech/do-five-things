@@ -1,5 +1,9 @@
 class InertiaExampleController < ApplicationController
   def index
+    Counter.create do |counter|
+      counter.click = 1
+    end if Counter.find_by_id(1).nil?
+
     render inertia: "InertiaExample", props: {
       name: params.fetch(:name, "Planet"),
       count: Counter.last.click
