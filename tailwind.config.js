@@ -1,25 +1,29 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require('tailwindcss/colors')
+
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   content: [
+    './public/*.html',
     './app/helpers/**/*.rb',
-    './app/assets/stylesheets/**/*.css',
+    './app/javascript/**/*.{js,jsx,ts,tsx,vue}',
     './app/views/**/*.{html,html.erb,erb}',
-    './app/javascript/components/**/*.js',
+    './app/assets/stylesheets/**/*.css',
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
     },
   },
   corePlugins: {
     aspectRatio: false,
   },
   plugins: [
-    require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/line-clamp'),
-  ],
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/container-queries'),
+    require('@tailwindcss/aspect-ratio')
+  ]
 }
