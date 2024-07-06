@@ -15,6 +15,14 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      colors: {
+        'dft-white': '#FAFAFA',
+        'dft-black': '#000000',
+        'dft-grey': '#3a3a3a',
+        'dft-primary': '#F196F9', // Candy pink
+        'dft-secondary': '#90F8FF', // Light blue
+        'dft-accent': '#FF6584', // Coral
+      }
     },
   },
   corePlugins: {
