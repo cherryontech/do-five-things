@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "tasks#index"
   get "/tasks", to: "tasks#index"
+
+  get 'settings', to: 'settings_page#index'
 end
