@@ -1,6 +1,6 @@
 <template>
   <div>
-    Settings page hihi
+   <h1>Settings page (TODO: Refactor into a reusable, styled component)</h1>
   </div>
 </template>
 
