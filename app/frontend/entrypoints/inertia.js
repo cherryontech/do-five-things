@@ -1,7 +1,13 @@
 import { createInertiaApp } from '@inertiajs/vue3'
+
 import { createApp, h } from 'vue'
 
+import { setupI18n } from '../i18n'
+
 import BaseLayout from '../layouts/BaseLayout.vue'
+
+const i18n = setupI18n()
+
 
 createInertiaApp({
   // Set default page title
@@ -24,6 +30,7 @@ createInertiaApp({
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .use(plugin)
+      .use(i18n)
       .mount(el)
   },
 })

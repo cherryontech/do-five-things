@@ -13,6 +13,7 @@ Do Five Things is a web application built with Ruby on Rails that helps users ma
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [Docs](#docs)
+- [i18n](#i18n)
 
 ## Ruby and Rails Versions
 
@@ -84,3 +85,8 @@ Please ensure units are present and passing for any work involves logic or goes 
 - [Ruby On Rails guides](https://guides.rubyonrails.org/)
 - [vite-ruby](https://vite-ruby.netlify.app/)
 - [Vue.js](https://vuejs.org/)
+
+## i18n
+
+This app uses [vue-18n](https://vue-i18n.intlify.dev/) to provide translations for the app.
+The app isn't currently translated into languages other than English, but using i18n helps keep all of the UI text in one place. This makes it easier for non-coders to contribute strings, and will help us scale languages more gracefully in the future.
