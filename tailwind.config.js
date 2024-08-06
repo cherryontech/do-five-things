@@ -16,9 +16,9 @@ module.exports = {
         sans: ['Righteous', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        'dft-white': '#FAFAFA',
+        'dft-white': '#FFFFFF',
         'dft-black': '#000000',
-        'dft-grey': '#3a3a3a',
+        'dft-grey': '#3a3a3a', // Dark grey
         'dft-primary': '#F196F9', // Candy pink
         'dft-secondary': '#90F8FF', // Light blue
         'dft-accent': '#FF6584', // Coral
