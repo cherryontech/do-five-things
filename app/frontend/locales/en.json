@@ -1,4 +1,10 @@
 {
+  "flavorText": {
+    "whatFiveThings": "What 5 things do you want to get done?"
+  },
+  "labels": {
+    "task": "Task"
+  },
   "pageTitles": {
     "settings": "Settings",
     "today": "Today",
