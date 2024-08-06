@@ -9,10 +9,8 @@
     </article>
     <footer id="footerNav" class="bg-dft-secondary">
       <Link href="/settings">Settings</Link>
-      <!-- TODO: Add route for /today -->
-      <Link href="https://example.com/today">Today</Link>
-      <!-- TODO: Add route for /progress -->
-      <Link href="https://example.com/progress">Progress</Link>
+      <Link href="/today">Today</Link>
+      <Link href="/progress">Progress</Link>
     </footer>
   </main>
 </template>

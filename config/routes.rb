@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   get "/tasks", to: "tasks#index"
 
   get 'settings', to: 'settings_page#index'
+  get 'today', to: 'today_page#index'
+  get 'progress', to: 'progress_page#index'
 end
