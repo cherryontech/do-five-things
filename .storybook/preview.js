@@ -3,6 +3,7 @@
 import enLocale from "../app/frontend/locales/en.json";
 import { setup } from "@storybook/vue3";
 import { createI18n } from "vue-i18n";
+import "../app/frontend/entrypoints/application.css"
 
 setup((app) => {
   const i18n = createI18n({

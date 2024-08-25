@@ -1,5 +1,5 @@
 <template>
-  <main class="flex flex-col min-h-screen p-4 bg-dft-grey">
+  <main class="flex flex-col min-h-screen p-4 appBg">
     <header class="border-4">
       <a href="#footerNav">Skip to nav (TODO: Hide until focused with keyboard)</a>
     </header>
