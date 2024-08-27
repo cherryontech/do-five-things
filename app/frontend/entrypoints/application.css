@@ -1,3 +1,21 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+  html {
+    @apply text-dft-white;
+  }
+
+  /* .docs-story is Storybook class */
+  .appBg, .docs-story {
+    @apply bg-dft-grey;
+  }
+}
+
+@layer utilities {
+  .dft-border {
+    @apply rounded-[20px] border-4;
+    @apply border-dft-primary;
+  }
+}
