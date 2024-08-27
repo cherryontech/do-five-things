@@ -9,5 +9,10 @@
     "settings": "Settings",
     "today": "Today",
     "progress": "Progress"
+  },
+  "nav": {
+    "settings": "Settings",
+    "today": "Today",
+    "progress": "Progress"
   }
 }

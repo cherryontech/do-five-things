@@ -21,6 +21,7 @@ module.exports = {
         'dft-grey': '#3a3a3a', // Dark grey
         'dft-primary': '#F196F9', // Candy pink
         'dft-secondary': '#90F8FF', // Light blue
+        'dft-secondary-dimmed': '#68D5DC',
         'dft-accent': '#FF6584', // Coral
       }
     },
