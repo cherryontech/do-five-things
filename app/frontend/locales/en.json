@@ -14,5 +14,12 @@
     "settings": "Settings",
     "today": "Today",
     "progress": "Progress"
+  },
+  "emptyStates": {
+    "todayPage": {
+      "text1": "No tasks yet! Go to",
+      "link1": "settings",
+      "text2": "to add."
+    }
   }
 }

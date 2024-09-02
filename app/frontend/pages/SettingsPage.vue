@@ -4,7 +4,7 @@
 
     <h2 class="mb-16 text-2xl text-center">{{ $t('flavorText.whatFiveThings') }}</h2>
 
-    <ol class="flex flex-col max-w-sm gap-6 mx-auto">
+    <ol class="dft-list-layout">
       <li v-for="(num, index) in 5" :key="index">
         <TaskInput :taskNumber="num" v-model="taskInputs[index]" />
       </li>
