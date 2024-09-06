@@ -1,7 +1,7 @@
 module Tasks
   class TodayController < ApplicationController
     def index
-      
+      render inertia: 'TodayPage'
     end
 
     def create

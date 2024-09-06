@@ -90,3 +90,5 @@ Please ensure units are present and passing for any work involves logic or goes 
 
 This app uses [vue-18n](https://vue-i18n.intlify.dev/) to provide translations for the app.
 The app isn't currently translated into languages other than English, but using i18n helps keep all of the UI text in one place. This makes it easier for non-coders to contribute strings, and will help us scale languages more gracefully in the future.
+
+For compatibility, any additional languages must be added in both `./storybook/preview.js` and `/app/frontend/i18n.js`.
