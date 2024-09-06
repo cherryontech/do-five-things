@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # Defines the root path route ("/")
-  root "tasks#index"
-  resources :tasks, only: [:index, :create]
+  root 'tasks#index'
+  get 'today', to: 'tasks/today#index'
 
   get 'settings', to: 'settings_page#index'
 
