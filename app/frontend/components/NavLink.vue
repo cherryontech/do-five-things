@@ -1,5 +1,9 @@
 <template>
-  <Link :href="linkDest" class="flex flex-col items-center justify-end h-full rounded-t-xl text-dft-black hover:bg-dft-secondary-dimmed">
+  <Link 
+  :href="linkDest" 
+  :class="{ 'inertia-link-exact-active': $page.url === linkDest }"
+  class="flex flex-col items-center justify-end h-full rounded-t-xl text-dft-black hover:bg-dft-secondary-dimmed"
+  >
     <BaseIcon :icon="icon" />
     <slot />
   </Link>
@@ -22,3 +26,9 @@ defineProps({
   }
 })
 </script>
+
+<style scoped>
+.inertia-link-exact-active {
+  @apply bg-dft-secondary-dimmed;
+}
+</style>

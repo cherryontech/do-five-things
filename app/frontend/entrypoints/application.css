@@ -22,9 +22,13 @@
   }
 }
 
+@layer components {
+  .dft-list-layout {
+  @apply flex flex-col max-w-sm gap-6 mx-auto;
+  }
+}
 @layer utilities {
-  .dft-border {
-    @apply rounded-[20px] border-4;
-    @apply border-dft-primary;
+  .dft-prose-link {
+    @apply border-b border-dft-primary;
   }
 }

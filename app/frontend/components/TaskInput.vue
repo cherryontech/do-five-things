@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-baseline gap-4 py-5 dft-border">
+  <div class="flex items-baseline gap-4 py-5 border-2 border-dft-primary rounded-dft-input">
     <label :for="taskId" class="flex items-center text-xl ml-9">
       <span class="sr-only">{{ $t('labels.task') }}</span>
       <span>{{ taskNumber }}.</span>

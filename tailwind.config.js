@@ -15,6 +15,9 @@ module.exports = {
       fontFamily: {
         sans: ['Righteous', ...defaultTheme.fontFamily.sans],
       },
+      borderRadius: {
+        'dft-input': '20px'
+      },
       colors: {
         'dft-white': '#FFFFFF',
         'dft-black': '#000000',
