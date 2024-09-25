@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'settings_page#index'
   get 'today', to: 'tasks/today#index'
-  get 'settings', to: 'settings_page#index'
   get 'progress', to: 'progress_page#index'
+  get 'settings', to: 'settings_page#index'
+  post 'settings', to: 'settings_page#bulk_create'
 
   get 'inertia-example', to: 'inertia_example#index'
   post 'inertia-example', to: 'inertia_example#increase_counter'
