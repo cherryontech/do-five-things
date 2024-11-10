@@ -1,10 +1,13 @@
 {
   "flavorText": {
-    "whatFiveThings": "What 5 things do you want to get done?"
+    "whatFiveThings": "What 5 things do you want to get done?",
+    "youGotThis": "You got this!"
   },
   "labels": {
+    "completed": "Completed",
     "save": "Save",
-    "task": "Task"
+    "task": "Task",
+    "toDo": "To do"
   },
   "pageTitles": {
     "settings": "Settings",
@@ -17,6 +20,7 @@
     "progress": "Progress"
   },
   "emptyStates": {
+    "nothingToSee": "Nothing to see here ....",
     "todayPage": {
       "text1": "No tasks yet! Go to",
       "link1": "settings",
