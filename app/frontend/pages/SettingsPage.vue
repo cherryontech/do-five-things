@@ -1,15 +1,15 @@
 <template>
-  <form @submit.prevent="validateAndSave" class="flex flex-col">
+  <form @submit.prevent="validateAndSave" class="mx-auto max-w-sm flex flex-col">
     <h1 class="mb-24 text-4xl text-center">{{ $t('pageTitles.settings') }}</h1>
 
     <h2 class="mb-16 text-2xl text-center">{{ $t('flavorText.whatFiveThings') }}</h2>
 
-    <p class="mt-5 order-last text-dft-error" id="legend">{{ $t('settingsPage.legend') }}</p>
+    <p class="max-w-xs mx-auto p-6 pt-0 mt-5 order-last text-dft-error" id="legend">{{ $t('settingsPage.legend') }}</p>
 
     <ol class="dft-list-layout">
       <li v-for="(task, index) in tasks" :key="task.id">
-        <TaskInput :aria-describedby="`${anyError && !task.name ? 'errorText' : ''} legend`" :taskNumber="index + 1"
-          v-model="tasks[index].name" :hasError="anyError && !task.name" />
+        <TaskInput :aria-describedby="`${anyError && !task.text ? 'errorText' : ''} legend`" :taskNumber="index + 1"
+          v-model="tasks[index].text" :hasError="anyError && !task.text" />
       </li>
     </ol>
 
@@ -31,18 +31,18 @@ import { Ref, computed, nextTick, ref } from 'vue'
 
 interface Task {
   id: number,
-  name: string
+  text: string
 }
 
 const tasks: Ref<Task[]> = ref(
   localStorage.getItem('dftTasks') ?
     JSON.parse(localStorage.getItem('dftTasks')!) :
     [
-      { id: 1, name: '' },
-      { id: 2, name: '' },
-      { id: 3, name: '' },
-      { id: 4, name: '' },
-      { id: 5, name: '' },
+      { id: 1, order: 1, text: '', completed: false },
+      { id: 2, order: 2, text: '', completed: true },
+      { id: 3, order: 3, text: '', completed: false },
+      { id: 4, order: 4, text: '', completed: false },
+      { id: 5, order: 5, text: '', completed: false },
     ]
 )
 
@@ -50,7 +50,7 @@ const anyEmpty = computed(() => {
   if (!tasks.value || tasks.value.length === 0) return true
 
   return tasks.value.some(task => {
-    return !Boolean(task.name)
+    return !Boolean(task.text)
   })
 })
 
