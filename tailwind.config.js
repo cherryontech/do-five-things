@@ -26,6 +26,7 @@ module.exports = {
         'dft-secondary': '#90F8FF', // Light blue
         'dft-secondary-dimmed': '#68D5DC',
         'dft-accent': '#FF6584', // Coral
+        'dft-error': '#FF6584', // Error (Coral)
       }
     },
   },

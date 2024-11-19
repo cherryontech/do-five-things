@@ -1,18 +1,22 @@
 <template>
-  <div class="flex items-baseline gap-4 py-5 border-2 border-dft-primary rounded-dft-input">
-    <label :for="taskId" class="flex items-center text-xl ml-9">
+  <div :class="hasError ? 'border-dft-error ring-dft-error' : 'border-dft-primary ring-dft-primary'"
+    class="transition ease-in-out focus-within:ring-4 ring-inset flex items-baseline gap-4 py-5 px-9 border-2 rounded-dft-input">
+
+    <label :for="taskId" class="flex items-center text-xl" :class="{ 'text-dft-error': hasError }">
       <span class="sr-only">{{ $t('labels.task') }}</span>
       <span>{{ taskNumber }}.</span>
+      <span v-if="hasError">*</span>
     </label>
-    <input class="p-0 leading-none bg-transparent border-0 border-b border-dft-white" :id="taskId" type="text"
-      :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" />
+
+    <input :aria-describedby="$attrs['aria-describedby'] as string || undefined" :aria-invalid="hasError || undefined"
+      class="w-full p-0 leading-none bg-transparent border-0 border-b" :id="taskId" type="text"
+      :class="hasError ? 'border-dft-error' : 'border-dft-white'"
+      :value="modelValue" @change="$emit('update:modelValue', ($event.target as HTMLInputElement).value)" />
   </div>
 </template>
 
 <script setup lang="ts">
 import SetupUid from '../composables/SetupUid'
-
-import { ref } from 'vue'
 
 defineProps({
   modelValue: {
@@ -22,6 +26,10 @@ defineProps({
   taskNumber: {
     type: Number,
     default: 1
+  },
+  hasError: {
+    type: Boolean,
+    default: false
   }
 })
 

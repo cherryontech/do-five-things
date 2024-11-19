@@ -24,7 +24,7 @@
 
 @layer components {
   .dft-list-layout {
-  @apply flex flex-col max-w-sm gap-6 mx-auto;
+  @apply flex flex-col gap-6 mx-auto;
   }
 }
 @layer utilities {
