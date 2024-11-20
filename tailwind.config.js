@@ -15,6 +15,9 @@ module.exports = {
       fontFamily: {
         sans: ['Righteous', ...defaultTheme.fontFamily.sans],
       },
+      borderRadius: {
+        'dft-input': '20px'
+      },
       colors: {
         'dft-white': '#FFFFFF',
         'dft-black': '#000000',
@@ -23,6 +26,7 @@ module.exports = {
         'dft-secondary': '#90F8FF', // Light blue
         'dft-secondary-dimmed': '#68D5DC',
         'dft-accent': '#FF6584', // Coral
+        'dft-error': '#FF6584', // Error (Coral)
       }
     },
   },

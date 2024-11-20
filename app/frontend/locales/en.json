@@ -1,9 +1,13 @@
 {
   "flavorText": {
-    "whatFiveThings": "What 5 things do you want to get done?"
+    "whatFiveThings": "What 5 things do you want to get done?",
+    "youGotThis": "You got this!"
   },
   "labels": {
-    "task": "Task"
+    "completed": "Completed",
+    "save": "Save",
+    "task": "Task",
+    "toDo": "To do"
   },
   "pageTitles": {
     "settings": "Settings",
@@ -14,5 +18,17 @@
     "settings": "Settings",
     "today": "Today",
     "progress": "Progress"
+  },
+  "emptyStates": {
+    "nothingToSee": "Nothing to see here ....",
+    "todayPage": {
+      "text1": "No tasks yet! Go to",
+      "link1": "settings",
+      "text2": "to add."
+    }
+  },
+  "settingsPage": {
+    "legend": "*All fields required. When you’re done editing your tasks, click save and view your tasks in the Today page!",
+    "errorText": "*Not done just yet, fill out all tasks before saving!"
   }
 }

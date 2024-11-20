@@ -1,61 +1,68 @@
 <template>
-  <div>
+  <form @submit.prevent="validateAndSave" class="mx-auto max-w-sm flex flex-col">
     <h1 class="mb-24 text-4xl text-center">{{ $t('pageTitles.settings') }}</h1>
 
     <h2 class="mb-16 text-2xl text-center">{{ $t('flavorText.whatFiveThings') }}</h2>
 
-    <form @submit.prevent="submit">
-      <ol class="flex flex-col max-w-sm gap-6 mx-auto">
-        <li v-for="(num, index) in 5" :key="index">
-          <TaskInput :taskNumber="num" :modelValue="form['tasks'][index].name" v-model="form['tasks'][index].name" />
-        </li>
-      </ol>
-      <button type="submit">Submit</button>
-    </form>
+    <p class="max-w-xs mx-auto p-6 pt-0 mt-5 order-last text-dft-error" id="legend">{{ $t('settingsPage.legend') }}</p>
 
-    <code>
-    Inputs:
-    <ol>
-      <li v-for="(input, index) in tasks" :key="index">
-        {{ input }}
+    <ol class="dft-list-layout">
+      <li v-for="(task, index) in tasks" :key="task.id">
+        <TaskInput :aria-describedby="`${anyError && !task.text ? 'errorText' : ''} legend`" :taskNumber="index + 1"
+          v-model="tasks[index].text" :hasError="anyError && !task.text" />
       </li>
     </ol>
-    Errors:
-    <ol>
-      <li v-for="(error, index) in errors" :key="index">
-        {{ error }}
-      </li>
-    </ol>
-    </code>
-  </div>
+
+    <div aria-live="assertive" class="order-last mb-7 text-dft-error">
+      <p tabindex="-1" v-if="anyError" id="errorText" ref="errorTextRef">{{ $t('settingsPage.errorText') }}</p>
+    </div>
+
+    <BaseButton class="order-last my-5 mx-auto block" :hasError="anyError">
+      {{ $t('labels.save') }}
+    </BaseButton>
+  </form>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import BaseButton from '../components/BaseButton.vue'
 import TaskInput from '../components/TaskInput.vue';
-import { reactive } from 'vue'
-import { router } from '@inertiajs/vue3'
 
-const props = defineProps({
-  tasks: {
-    type: Array,
-    default: [{
-      id: Number
-    }],
-  },
-  'task.name': String,
-  'task.order': Number,
-  errors: Object
-})
+import { Ref, computed, nextTick, ref } from 'vue'
 
-const form = reactive({
-  tasks: props.tasks.map(({ id, name }) => ({ id, name }))
-})
-
-console.log(props.tasks)
-
-function submit() {
-  router.post('/settings', form)
+interface Task {
+  id: number,
+  text: string
 }
 
-// const taskInputs = reactive([])
+const tasks: Ref<Task[]> = ref(
+  localStorage.getItem('dftTasks') ?
+    JSON.parse(localStorage.getItem('dftTasks')!) :
+    [
+      { id: 1, order: 1, text: '', completed: false },
+      { id: 2, order: 2, text: '', completed: true },
+      { id: 3, order: 3, text: '', completed: false },
+      { id: 4, order: 4, text: '', completed: false },
+      { id: 5, order: 5, text: '', completed: false },
+    ]
+)
+
+const anyEmpty = computed(() => {
+  if (!tasks.value || tasks.value.length === 0) return true
+
+  return tasks.value.some(task => {
+    return !Boolean(task.text)
+  })
+})
+
+const anyError = ref(false)
+const errorTextRef: Ref<HTMLElement | null> = ref(null)
+
+const validateAndSave = async () => {
+  anyEmpty.value ? anyError.value = true : anyError.value = false
+
+  await nextTick()
+  if (anyError.value && errorTextRef.value) errorTextRef.value?.focus()
+
+  localStorage.setItem('dftTasks', JSON.stringify(tasks.value))
+}
 </script>
