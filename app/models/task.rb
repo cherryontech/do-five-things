@@ -1,7 +1,11 @@
 class Task < ApplicationRecord
-  validates     :name, presence: true
+  validates     :text, presence: true
   before_create :validate_task_limit
   after_create  :validate_task_create_date
+
+  def today
+    Task.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+  end
 
   private
 
