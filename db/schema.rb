@@ -10,15 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_30_162940) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_23_170320) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "counters", force: :cascade do |t|
-    t.integer "click"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "goals", force: :cascade do |t|
     t.date "start_date"
@@ -34,8 +28,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_30_162940) do
 
   create_table "tasks", force: :cascade do |t|
     t.integer "order"
-    t.text "name"
-    t.boolean "complete"
+    t.text "text"
+    t.boolean "completed"
+    t.datetime "completed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
