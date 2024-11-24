@@ -7,9 +7,9 @@
     <p class="max-w-xs mx-auto p-6 pt-0 mt-5 order-last text-dft-error" id="legend">{{ $t('settingsPage.legend') }}</p>
 
     <ol class="dft-list-layout">
-      <li v-for="(task, index) in tasks" :key="task.id">
+      <li v-for="(task, index) in templateTasks" :key="task.order">
         <TaskInput :aria-describedby="`${anyError && !task.text ? 'errorText' : ''} legend`" :taskNumber="index + 1"
-          v-model="tasks[index].text" :hasError="anyError && !task.text" />
+          v-model="task.text" :hasError="anyError && !task.text" />
       </li>
     </ol>
 
@@ -24,6 +24,7 @@
 </template>
 
 <script setup lang="ts">
+import { router } from '@inertiajs/vue3'
 import BaseButton from '../components/BaseButton.vue'
 import TaskInput from '../components/TaskInput.vue';
 
@@ -32,24 +33,36 @@ import { Ref, computed, nextTick, ref } from 'vue'
 interface Task {
   id: number,
   text: string
+  order: number
+  completed: boolean
 }
 
-const tasks: Ref<Task[]> = ref(
-  localStorage.getItem('dftTasks') ?
-    JSON.parse(localStorage.getItem('dftTasks')!) :
-    [
-      { id: 1, order: 1, text: '', completed: false },
-      { id: 2, order: 2, text: '', completed: true },
-      { id: 3, order: 3, text: '', completed: false },
-      { id: 4, order: 4, text: '', completed: false },
-      { id: 5, order: 5, text: '', completed: false },
-    ]
-)
+const props = defineProps<{ tasks: Task[] }>()
+
+const tasks = [
+  { id: null, order: 1, text: '', completed: false },
+  { id: null, order: 2, text: '', completed: false },
+  { id: null, order: 3, text: '', completed: false },
+  { id: null, order: 4, text: '', completed: false },
+  { id: null, order: 5, text: '', completed: false },
+]
+
+console.log({p: props.tasks})
+
+const filteredTasks = tasks.map(task => {
+  const serverTask = props.tasks?.find((t: Task) => t.order == task.order)
+  console.log({serverTask})
+  if (serverTask) {
+    return {...task, ...serverTask}
+  }
+  return task
+})
+const templateTasks: Ref<Task[]> = ref(filteredTasks);
 
 const anyEmpty = computed(() => {
-  if (!tasks.value || tasks.value.length === 0) return true
+  if (!templateTasks.value || templateTasks.value.length === 0) return true
 
-  return tasks.value.some(task => {
+  return templateTasks.value.some(task => {
     return !Boolean(task.text)
   })
 })
@@ -63,6 +76,6 @@ const validateAndSave = async () => {
   await nextTick()
   if (anyError.value && errorTextRef.value) errorTextRef.value?.focus()
 
-  localStorage.setItem('dftTasks', JSON.stringify(tasks.value))
+  router.post('/settings', { tasks: templateTasks.value })
 }
 </script>
