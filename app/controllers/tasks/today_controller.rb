@@ -1,12 +1,12 @@
 module Tasks
   class TodayController < ApplicationController
     def index
-      render inertia: 'TodayPage'
+      render inertia: 'TodayPage', props: { tasks: Task.today }
     end
 
     def edit
       @task = resource
-      @task.update(complete: !@task.complete)
+      @task.update(completed: !@task.completed)
 
       if @task.save
         redirect_to root_path
@@ -18,11 +18,7 @@ module Tasks
     private
 
     def resource
-      Task.find(resource_params[:task_id])
-    end
-
-    def resource_params
-      params.require(:task).permit(:name, :order, :task_id)
+      Task.find(params[:task_id])
     end
   end
 end
