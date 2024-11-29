@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_30_162940) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_07_044432) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_30_162940) do
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "complete"
+    t.integer "target", default: 183
   end
 
   create_table "progresses", force: :cascade do |t|
@@ -38,6 +40,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_30_162940) do
     t.boolean "complete"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
