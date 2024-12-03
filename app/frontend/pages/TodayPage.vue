@@ -32,14 +32,16 @@
 </template>
 
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3'
+import { Link, router } from '@inertiajs/vue3'
 
 import TaskCheck from '../components/TaskCheck.vue';
 
 import { computed, reactive } from 'vue'
 import { Task } from '../types'
 
-const tasks: Task[] = reactive(localStorage.getItem('dftTasks') ? JSON.parse(localStorage.getItem('dftTasks')!) : [])
+const props = defineProps<{ tasks: Task[] }>()
+
+const tasks = props.tasks
 
 const sortedTasks = computed(() => {
   return tasks.sort((a,b) => { return a.order - b.order })
@@ -58,8 +60,7 @@ const updateIsChecked = (taskId: Task['id']) => {
 
   if(currentTask) {
     currentTask.completed = !currentTask.completed
+    router.patch('/today', { task: currentTask })
   }
-
-  localStorage.setItem('dftTasks', JSON.stringify(sortedTasks.value))
 }
 </script>
