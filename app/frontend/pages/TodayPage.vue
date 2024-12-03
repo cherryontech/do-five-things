@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3'
+import { Link, router } from '@inertiajs/vue3'
 
 import TaskCheck from '../components/TaskCheck.vue';
 
@@ -60,7 +60,7 @@ const updateIsChecked = (taskId: Task['id']) => {
 
   if(currentTask) {
     currentTask.completed = !currentTask.completed
+    router.patch('/today', { task: currentTask })
   }
-
 }
 </script>
