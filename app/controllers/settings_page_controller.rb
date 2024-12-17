@@ -31,6 +31,6 @@ class SettingsPageController < ApplicationController
   private
 
   def resource_params
-    params.permit!
+    params.permit(tasks: %i[id text order completed])
   end
 end
