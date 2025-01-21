@@ -4,65 +4,88 @@
 
     <h2 class="mb-16 text-2xl text-center">{{ $t('flavorText.whatFiveThings') }}</h2>
 
+    <div aria-live="assertive" class="text-dft-error" :class="{ 'my-5': anyError }">
+      <p data-test="errorMessage" tabindex="-1" v-if="anyError" id="errorText" ref="errorTextRef">{{ $t('settingsPage.errorText') }}</p>
+    </div>
+
     <p class="max-w-xs mx-auto p-6 pt-0 mt-5 order-last text-dft-error" id="legend">{{ $t('settingsPage.legend') }}</p>
 
-    <ol class="dft-list-layout">
-      <li v-for="(task, index) in tasks" :key="task.id">
-        <TaskInput :aria-describedby="`${anyError && !task.text ? 'errorText' : ''} legend`" :taskNumber="index + 1"
-          v-model="tasks[index].text" :hasError="anyError && !task.text" />
+    <ol class="dft-list-layout mb-7" data-test="taskList" id="wtf">
+      <li v-for="task in tasksToManipulate" :key="task.order">
+        <TaskInput :data-test="`task-${task.order}`" :aria-describedby="`${anyError && !task.text ? 'errorText' : ''} legend`" :taskNumber="task.order"
+          v-model="task.text" :hasError="anyError && !task.text" />
       </li>
     </ol>
 
-    <div aria-live="assertive" class="order-last mb-7 text-dft-error">
-      <p tabindex="-1" v-if="anyError" id="errorText" ref="errorTextRef">{{ $t('settingsPage.errorText') }}</p>
-    </div>
-
-    <BaseButton class="order-last my-5 mx-auto block" :hasError="anyError">
+    <BaseButton data-test="saveButton" class="order-last my-5 mx-auto block" :hasError="anyError">
       {{ $t('labels.save') }}
     </BaseButton>
   </form>
 </template>
 
 <script setup lang="ts">
+import { router } from '@inertiajs/vue3'
 import BaseButton from '../components/BaseButton.vue'
 import TaskInput from '../components/TaskInput.vue';
 
-import { Ref, computed, nextTick, ref } from 'vue'
+import { Ref, computed, reactive, ref } from 'vue'
 
 interface Task {
-  id: number,
+  id: number | null,
   text: string
+  order: number
+  completed: boolean
 }
 
-const tasks: Ref<Task[]> = ref(
-  localStorage.getItem('dftTasks') ?
-    JSON.parse(localStorage.getItem('dftTasks')!) :
-    [
-      { id: 1, order: 1, text: '', completed: false },
-      { id: 2, order: 2, text: '', completed: true },
-      { id: 3, order: 3, text: '', completed: false },
-      { id: 4, order: 4, text: '', completed: false },
-      { id: 5, order: 5, text: '', completed: false },
-    ]
-)
+const props = defineProps<{ tasks: Task[] }>()
 
-const anyEmpty = computed(() => {
-  if (!tasks.value || tasks.value.length === 0) return true
+const orderedTasks = computed(() => {
+  const tasks = [
+    { id: null, order: 1, text: '', completed: false },
+    { id: null, order: 2, text: '', completed: false },
+    { id: null, order: 3, text: '', completed: false },
+    { id: null, order: 4, text: '', completed: false },
+    { id: null, order: 5, text: '', completed: false },
+  ]
 
-  return tasks.value.some(task => {
+  return tasks.map(task => {
+    const serverTask = props.tasks?.find((t: Task) => t.order === task.order)
+    if (serverTask) {
+      return { ...task, ...serverTask }
+    }
+    return task
+  })
+})
+
+const tasksToManipulate = reactive(orderedTasks.value)
+
+
+const isDirty = ref(false)
+
+const anyError = computed(() => {
+  // If we don't have any inputs, the app isn't usable
+  if (!tasksToManipulate || tasksToManipulate.length === 0) return true
+
+  // If the user hasn't tried saving the form yet, we don't need to validate
+  if (!isDirty.value) return false
+
+  return tasksToManipulate.some(task => {
     return !Boolean(task.text)
   })
 })
 
-const anyError = ref(false)
 const errorTextRef: Ref<HTMLElement | null> = ref(null)
 
 const validateAndSave = async () => {
-  anyEmpty.value ? anyError.value = true : anyError.value = false
+  // User has interacted with the form
+  isDirty.value = true
 
-  await nextTick()
-  if (anyError.value && errorTextRef.value) errorTextRef.value?.focus()
+  if (anyError.value && errorTextRef.value) {
+    errorTextRef.value?.focus()
+    return
+  }
 
-  localStorage.setItem('dftTasks', JSON.stringify(tasks.value))
+  router.post('/settings', { tasks: tasksToManipulate })
+  // TODO: Save confirmation toast
 }
 </script>

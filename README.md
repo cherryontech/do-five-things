@@ -56,7 +56,7 @@ Do Five Things is a web application built with Ruby on Rails that helps users ma
   ```bash
   yarn
   ```
-  
+
 ## Usage
 
 1. Start the server:
@@ -68,7 +68,7 @@ Do Five Things is a web application built with Ruby on Rails that helps users ma
 
 1. Alternatively `./bin/dev` will start `Procfile.dev` which will run all the commands together.
 Running the commands separately might be useful for debugging 😅
-To use the application, open your web browser and navigate to <http://localhost:3000>.
+To use the application, open your web browser and navigate to <http://localhost:3002>.
 
 ## Contributing
 
