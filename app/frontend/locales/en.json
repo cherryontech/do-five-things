@@ -25,6 +25,11 @@
       "text1": "No tasks yet! Go to",
       "link1": "settings",
       "text2": "to add."
+    },
+    "progressPage": {
+      "text1": "No progress yet...complete all 5 tasks in the",
+      "link1": "Today",
+      "text2": "page first!"
     }
   },
   "settingsPage": {
