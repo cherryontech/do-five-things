@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_23_170320) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_08_194835) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "daily_progs", force: :cascade do |t|
+    t.bigint "goal_id", null: false
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id", "date"], name: "index_daily_progs_on_goal_id_and_date", unique: true
+    t.index ["goal_id"], name: "index_daily_progs_on_goal_id"
+  end
 
   create_table "goals", force: :cascade do |t|
     t.date "start_date"
@@ -21,18 +30,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_23_170320) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "progresses", force: :cascade do |t|
+  create_table "task_progs", force: :cascade do |t|
+    t.bigint "daily_prog_id", null: false
+    t.bigint "task_id", null: false
+    t.boolean "completed"
+    t.datetime "completed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["daily_prog_id", "task_id"], name: "index_task_progs_on_daily_prog_id_and_task_id", unique: true
+    t.index ["daily_prog_id"], name: "index_task_progs_on_daily_prog_id"
+    t.index ["task_id"], name: "index_task_progs_on_task_id"
   end
 
   create_table "tasks", force: :cascade do |t|
     t.integer "order"
     t.text "text"
-    t.boolean "completed"
-    t.datetime "completed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "goal_id", null: false
+    t.index ["goal_id"], name: "index_tasks_on_goal_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,4 +60,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_23_170320) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "daily_progs", "goals"
+  add_foreign_key "task_progs", "daily_progs"
+  add_foreign_key "task_progs", "tasks"
+  add_foreign_key "tasks", "goals"
 end
