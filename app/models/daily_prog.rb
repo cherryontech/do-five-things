@@ -10,7 +10,7 @@ class DailyProg < ApplicationRecord
 
   def initialize_task_progs
     goal.tasks.each do |task|
-      task_progs.create(task: task, completed: false)
+      task_progs.create(task: task, completed: false, date: date)
     end
   end
 
