@@ -1,13 +1,7 @@
 module Tasks
   class TodayController < ApplicationController
     def index
-      goal = Goal.first.presence || Goal.create!(start_date: Date.current)
-      tasks = goal.tasks
-      daily_prog = DailyProg.find_or_initialize_by(goal: goal, date: Date.current)
-      daily_prog.save! if daily_prog.new_record?
-
-      
-
+      tasks = TaskService.fetch_today_tasks
       render inertia: 'TodayPage', props: { tasks: tasks }
     rescue StandardError => e
       redirect_to today_path, status_code: 422, inertia: { errors: e.message }
