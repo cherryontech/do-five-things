@@ -5,6 +5,7 @@ class DailyProg < ApplicationRecord
 
   before_create   :set_date
   after_create    :initialize_task_progs
+  before_update   :set_completion_timestamps
 
   private
 
@@ -16,5 +17,11 @@ class DailyProg < ApplicationRecord
 
   def set_date
     self.date ||= Date.current
+  end
+
+  def set_completion_timestamps
+    return unless completed_changed?
+
+    self.completed_at = completed? ? Time.current : nil
   end
 end
