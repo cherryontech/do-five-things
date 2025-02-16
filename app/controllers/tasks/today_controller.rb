@@ -9,9 +9,9 @@ module Tasks
 
     def edit
       @task = resource
-      @task.update(completed: params[:task][:completed])
+      @task.update!(completed: params[:task][:completed])
 
-      if @task.valid
+      if @task.valid?
         redirect_to today_path
       else
         redirect_to today_path, status_code: 422, inertia: { errors: @task.errors }
