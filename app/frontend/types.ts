@@ -4,3 +4,10 @@ export type Task = {
   order: number,
   completed: boolean
 }
+
+export type Prog = {
+  id: number,
+  completed: boolean,
+  completed_at: Date,
+  date: Date
+}
