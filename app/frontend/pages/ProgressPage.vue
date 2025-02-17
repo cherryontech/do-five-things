@@ -2,8 +2,8 @@
   <div>
     <h1>{{ $t('pageTitles.progress') }}</h1>
    <p>This is the progress page</p>
-   {{ progs.length }}
-   {{ completedProgs.length }}
+   <p>days checked in: {{ progs.length }}</p>
+   <p>completed days: {{ completedProgs.length }}</p>
   </div>
 </template>
 
