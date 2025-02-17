@@ -1,9 +1,7 @@
 module Tasks
   class TodayController < ApplicationController
     def index
-      tasks = TaskService.fetch_today_tasks
-      tasks_with_text = tasks.select { |task| task[:text].present? }
-      render inertia: 'TodayPage', props: { tasks: tasks_with_text }
+      render inertia: 'TodayPage', props: { tasks: collection }
     rescue StandardError => e
       render inertia: 'TodayPage', status_code: 422, props: { errors: e.message }
     end
@@ -20,6 +18,10 @@ module Tasks
     end
 
     private
+
+    def collection
+      @collection ||= TaskService.fetch_today_tasks.select { |task| task[:text].present? }
+    end
 
     def resource
       Task.find(params[:task][:id])
