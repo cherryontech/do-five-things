@@ -21,6 +21,8 @@ class Task < ApplicationRecord
   private
 
   def update_daily_task_prog
+    return unless daily_task_prog.present?
+
     daily_task_prog.save!
   end
 end
