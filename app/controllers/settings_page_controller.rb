@@ -1,26 +1,14 @@
 class SettingsPageController < ApplicationController
   def index
-    render inertia: 'SettingsPage', props: { tasks: Task.today.order(:order) }
+    tasks = TaskService.fetch_today_tasks
+    render inertia: 'SettingsPage', props: { tasks: tasks }
   end
 
-  def bulk_create
-    tasks_with_ids, tasks_without_ids = resource_params[:tasks].partition { |t| t['id'].present? }
-
-    if tasks_with_ids.any?
-      ids = tasks_with_ids.map { |t| t['id'] }
-      tasks = Task.where(id: ids)
-      tasks.each do |task|
-        param_task = tasks_with_ids.find { |t| t[:id] == task.id }
-        task.update!(param_task)
-      end
-    end
-
-    if tasks_without_ids.any?
-      valid_tasks = tasks_without_ids.select do |task|
-        t = Task.new(task)
-        t if t.valid?
-      end
-      Task.create!(valid_tasks)
+  def bulk_update
+    tasks = resource_params[:tasks]
+    tasks.each do |task|
+      task_record = Task.find(task['id'])
+      task_record.update!(task)
     end
 
     redirect_to root_path
@@ -31,6 +19,7 @@ class SettingsPageController < ApplicationController
   private
 
   def resource_params
-    params.permit(tasks: %i[id text order completed])
+    params.delete(:settings_page)
+    params.permit(tasks: %i[id text order completed completed_at])
   end
 end

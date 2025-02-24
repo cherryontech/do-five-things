@@ -1,30 +1,28 @@
 class Task < ApplicationRecord
-  validates     :text, presence: true
-  before_create :validate_task_limit
-  after_create  :validate_task_create_date
-  before_save   :check_completed_at
+  # validates     :text, presence: true
+  validates     :order, presence: true
 
-  scope :today, -> { where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day) }
+  has_many      :task_progs, dependent: :destroy
+  has_one       :daily_task_prog, -> { where(date: Date.current) }, class_name: 'TaskProg'
+  belongs_to    :goal
+
+  delegate      :completed, :completed_at, to: :daily_task_prog
+
+  after_save    :update_daily_task_prog
+
+  def completed=(value)
+    daily_task_prog.completed = value
+  end
+
+  def completed_at=(value)
+    daily_task_prog.completed_at = value
+  end
 
   private
 
-  def check_completed_at
-    if completed_changed? && completed?
-      self.completed_at = Time.current
-    elsif completed_changed? && !completed?
-      self.completed_at = nil
-    end
-  end
+  def update_daily_task_prog
+    return unless daily_task_prog.present?
 
-  def validate_task_create_date
-    return unless created_at < Time.zone.now.beginning_of_day
-
-    errors.add(:base, "Tasks cannot be created for past dates.")
-  end
-
-  def validate_task_limit
-    return unless Task.today.count >= 5
-
-    errors.add(:base, "There can be at most 5 tasks for the day")
+    daily_task_prog.save!
   end
 end
