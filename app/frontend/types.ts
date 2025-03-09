@@ -11,3 +11,5 @@ export type Prog = {
   completed_at: Date,
   date: Date
 }
+
+export type Startdate = string

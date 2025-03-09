@@ -30,5 +30,55 @@
   "settingsPage": {
     "legend": "*All fields required. When you’re done editing your tasks, click save and view your tasks in the Today page!",
     "errorText": "*Not done just yet, fill out all tasks before saving!"
+  },
+  "progressPage": {
+    "completedText": "{count}/ 182 Days",
+    "tableCaptionMonth": "Progress for the month of {month}, with {count} days completed.",
+    "statusComplete": "Complete",
+    "statusIncomplete": "Incomplete"
+  },
+  "months": {
+    "0": "January",
+    "1": "February",
+    "2": "March",
+    "3": "April",
+    "4": "May",
+    "5": "June",
+    "6": "July",
+    "7": "August",
+    "8": "September",
+    "9": "October",
+    "10": "November",
+    "11": "December"
+  },
+  "daysOfTheWeek": {
+    "0": {
+      "abbreviation": "S",
+      "name": "Sunday"
+    },
+    "1": {
+      "abbreviation": "M",
+      "name": "Monday"
+    },
+    "2": {
+      "abbreviation": "T",
+      "name": "Tuesday"
+    },
+    "3": {
+      "abbreviation": "W",
+      "name": "Wednesday"
+    },
+    "4": {
+      "abbreviation": "T",
+      "name": "Thursday"
+    },
+    "5": {
+      "abbreviation": "F",
+      "name": "Friday"
+    },
+    "6": {
+      "abbreviation": "S",
+      "name": "Saturday"
+    }
   }
 }
