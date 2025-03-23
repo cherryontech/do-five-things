@@ -6,10 +6,10 @@
   "labels": {
     "completed": "Completed",
     "calendar": {
-      "backMonth": "Previous month",
-      "forwardMonth": "Next month",
-      "noFutureDates": "No future dates",
-      "noPreviousDates": "No previous dates"
+      "backMonth": "Go to previous month",
+      "forwardMonth": "Go to next month",
+      "noFutureDates": "No future dates available.",
+      "noPreviousDates": "No previous dates available."
     },
     "save": "Save",
     "task": "Task",
@@ -38,8 +38,11 @@
     "errorText": "*Not done just yet, fill out all tasks before saving!"
   },
   "progressPage": {
+    "calendar": "Calendar",
+    "completedPercent": "{percent}% complete",
     "completedText": "{count}/ 182 Days",
     "tableCaptionMonth": "Progress for the month of {month}, with {completecount} days completed and {partiallycompletecount} days partially completed.",
+    "stats": "Statistics",
     "statusComplete": "Complete",
     "statusIncomplete": "Incomplete",
     "statusPartiallyComplete": "Partially complete"

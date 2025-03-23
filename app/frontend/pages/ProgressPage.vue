@@ -2,22 +2,30 @@
   <div class="mx-auto max-w-sm">
     <h1 class="mb-24 text-4xl text-center">{{ $t('pageTitles.progress') }}</h1>
 
-    <h2 class="mb-16 text-2xl text-center">
+    <h2 class="sr-only">{{ $t('progressPage.stats') }}</h2>
+    <p class="text-2xl text-dft-grey-mid mb-8">
       {{ $t('progressPage.completedText', { count: completedProgs.length }) }}
-    </h2>
+    </p>
 
-    <div>
+    <p class="text-5xl text-center mb-6">
+      <span aria-hidden="true">{{ percentCompleted }}%</span>
+      <span class="sr-only">{{ $t('progressPage.completedPercent', { percent: percentCompleted }) }}</span>
+    </p>
+    <div class="w-full rounded-full border-dft-primary border h-8 mb-24 overflow-hidden">
+      <div class="bg-dft-primary h-full rounded-l-full" :class="`w-[${percentCompleted}%]`" />
+    </div>
+
+    <h2 class="sr-only">{{ $t('progressPage.calendar') }}</h2>
+    <section class="mb-14">
       <div class="flex items-center -ml-4">
         <button @click="goBack" class="min-w-11 min-h-11 flex items-center justify-center"
-          :aria-label="$t('labels.calendar.backMonth')" aria-controls="monthInfo"
-          :aria-invalid="previousDatesError"
+          :aria-label="$t('labels.calendar.backMonth')" aria-controls="monthInfo" :aria-invalid="previousDatesError"
           :aria-errormessage="previousDatesError ? 'monthInfo' : undefined">
           <BaseIcon icon="arrowLeft" />
         </button>
         <h3 class="text-xl">{{ currentTable.nameString }}, {{ currentTable.year }}</h3>
         <button @click="goForward" class="min-w-11 min-h-11 flex items-center justify-center"
-          :aria-label="$t('labels.calendar.forwardMonth')" aria-controls="monthInfo"
-          :aria-invalid="futureDatesError"
+          :aria-label="$t('labels.calendar.forwardMonth')" aria-controls="monthInfo" :aria-invalid="futureDatesError"
           :aria-errormessage="futureDatesError ? 'monthInfo' : undefined">
           <BaseIcon icon="arrowRight" />
         </button>
@@ -54,17 +62,17 @@
         <tbody>
           <tr v-for="(week, weekIndex) in currentTable.dates" :key="weekIndex">
             <td class="p-2 text-center font-subtle text-sm rounded-dft-sm" v-for="(day, dayIndex) in week"
-              :key="dayIndex"
-              :class="cellClasses(day)">
+              :key="dayIndex" :class="cellClasses(day)">
               <span class="sr-only" v-if="day.isSameMonth">
-                {{ day.isComplete ? $t('progressPage.statusComplete') : day.isPartiallyComplete ? $t('progressPage.statusPartiallyComplete') : $t('progressPage.statusIncomplete') }}
+                {{ day.isComplete ? $t('progressPage.statusComplete') : day.isPartiallyComplete ?
+                  $t('progressPage.statusPartiallyComplete') : $t('progressPage.statusIncomplete') }}
               </span>
               {{ getDate(day.date) }}
             </td>
           </tr>
         </tbody>
       </table>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -194,7 +202,7 @@ const cellClasses = (day) => {
 
   if (day.isComplete) return 'bg-dft-primary outline outline-black'
 
-  return 'bg-dft-grey-mid' 
+  return 'bg-dft-grey-mid'
 }
 
 
@@ -226,9 +234,9 @@ const goForward = () => {
   }
 }
 
+const percentCompleted = Math.round((100 * completedProgs.length) / 182)
 
-
-// TODO: Can we make an accessible tooltip here?
+// TODO: Can we make an accessible tooltip for each of the days?
 // TODO: Make the week view
 // TODO: Units!
 </script>
