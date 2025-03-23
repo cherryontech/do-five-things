@@ -105,6 +105,12 @@
     <rect width="74" height="11" rx="5.5" fill="#FAFAFA" />
     <path d="M0 5.5C0 2.46243 2.46243 0 5.5 0H51V11H5.5C2.46244 11 0 8.53757 0 5.5Z" fill="black" />
   </svg>
+  <svg v-if="icon === 'arrowRight'" xmlns="http://www.w3.org/2000/svg" width="8" height="17" viewBox="0 0 8 17" fill="none">
+    <path d="M1.00004 1L7.0813 8.86987L1.00004 16.0243" stroke="#FAFAFA" />
+  </svg>
+  <svg v-if="icon === 'arrowLeft'" xmlns="http://www.w3.org/2000/svg" width="8" height="17" viewBox="0 0 8 17" fill="none">
+    <path d="M7.08126 1.0199L0.999999 8.88976L7.08126 16.0442" stroke="#FAFAFA" />
+  </svg>
 </template>
 
 <script setup lang="ts">
@@ -113,7 +119,7 @@ defineProps({
     type: String,
     default: '',
     validator(iconName: string) {
-      return ['cog', 'sun', 'thermometer'].includes(iconName)
+      return ['arrowLeft', 'arrowRight', 'cog', 'sun', 'thermometer'].includes(iconName)
     }
   },
   iconAlt: {

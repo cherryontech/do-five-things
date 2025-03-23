@@ -9,6 +9,7 @@ export type Prog = {
   id: number,
   completed: boolean,
   completed_at: Date,
+  created_at: Date,
   date: Date
 }
 

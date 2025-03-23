@@ -5,6 +5,12 @@
   },
   "labels": {
     "completed": "Completed",
+    "calendar": {
+      "backMonth": "Previous month",
+      "forwardMonth": "Next month",
+      "noFutureDates": "No future dates",
+      "noPreviousDates": "No previous dates"
+    },
     "save": "Save",
     "task": "Task",
     "toDo": "To do"
@@ -33,9 +39,10 @@
   },
   "progressPage": {
     "completedText": "{count}/ 182 Days",
-    "tableCaptionMonth": "Progress for the month of {month}, with {count} days completed.",
+    "tableCaptionMonth": "Progress for the month of {month}, with {completecount} days completed and {partiallycompletecount} days partially completed.",
     "statusComplete": "Complete",
-    "statusIncomplete": "Incomplete"
+    "statusIncomplete": "Incomplete",
+    "statusPartiallyComplete": "Partially complete"
   },
   "months": {
     "0": "January",
