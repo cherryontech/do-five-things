@@ -5,6 +5,12 @@
   },
   "labels": {
     "completed": "Completed",
+    "calendar": {
+      "backMonth": "Go to previous month",
+      "forwardMonth": "Go to next month",
+      "noFutureDates": "No future dates available.",
+      "noPreviousDates": "No previous dates available."
+    },
     "save": "Save",
     "task": "Task",
     "toDo": "To do"
@@ -30,5 +36,59 @@
   "settingsPage": {
     "legend": "*All fields required. When you’re done editing your tasks, click save and view your tasks in the Today page!",
     "errorText": "*Not done just yet, fill out all tasks before saving!"
+  },
+  "progressPage": {
+    "calendar": "Calendar",
+    "completedPercent": "{percent}% complete",
+    "completedText": "{count}/ 182 Days",
+    "tableCaptionMonth": "Progress for the month of {month}, with {completecount} days completed and {partiallycompletecount} days partially completed.",
+    "stats": "Statistics",
+    "statusComplete": "Complete",
+    "statusIncomplete": "Incomplete",
+    "statusPartiallyComplete": "Partially complete"
+  },
+  "months": {
+    "0": "January",
+    "1": "February",
+    "2": "March",
+    "3": "April",
+    "4": "May",
+    "5": "June",
+    "6": "July",
+    "7": "August",
+    "8": "September",
+    "9": "October",
+    "10": "November",
+    "11": "December"
+  },
+  "daysOfTheWeek": {
+    "0": {
+      "abbreviation": "S",
+      "name": "Sunday"
+    },
+    "1": {
+      "abbreviation": "M",
+      "name": "Monday"
+    },
+    "2": {
+      "abbreviation": "T",
+      "name": "Tuesday"
+    },
+    "3": {
+      "abbreviation": "W",
+      "name": "Wednesday"
+    },
+    "4": {
+      "abbreviation": "T",
+      "name": "Thursday"
+    },
+    "5": {
+      "abbreviation": "F",
+      "name": "Friday"
+    },
+    "6": {
+      "abbreviation": "S",
+      "name": "Saturday"
+    }
   }
 }
