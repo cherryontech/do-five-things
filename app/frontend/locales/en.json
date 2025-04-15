@@ -28,6 +28,7 @@
     "progress": "Progress"
   },
   "nav": {
+    "skipLink": "Skip to navigation",
     "settings": "Settings",
     "today": "Today",
     "progress": "Progress"
