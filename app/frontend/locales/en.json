@@ -1,7 +1,14 @@
 {
   "flavorText": {
     "whatFiveThings": "What 5 things do you want to get done?",
-    "youGotThis": "You got this!"
+    "youGotThis": "You got this!",
+    "congrats": {
+      "intro": "Congratulations! You've completed all your tasks today, check back in tomorrow.",
+      "link": {
+        "text": "In the meantime, check your {url}!",
+        "link": "Progress"
+      }
+    }
   },
   "labels": {
     "completed": "Completed",
