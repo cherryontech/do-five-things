@@ -1,5 +1,7 @@
 module Tasks
   class TodayController < ApplicationController
+    before_action :require_user!
+
     def index
       render inertia: 'TodayPage', props: { tasks: collection }
     rescue StandardError => e

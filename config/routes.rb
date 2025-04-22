@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  passwordless_for :users
   # Defines the root path route ("/")
   root 'settings_page#index'
 
@@ -12,6 +13,9 @@ Rails.application.routes.draw do
 
   get 'inertia-example', to: 'inertia_example#index'
   post 'inertia-example', to: 'inertia_example#increase_counter'
+
+  get 'login', to: 'sessions/login_page#index'
+  post 'login', to: 'sessions/login_page#create'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
