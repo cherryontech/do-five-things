@@ -1,5 +1,4 @@
-class SettingsPageController < ApplicationController
-  before_action :require_user!
+class SettingsPageController < AuthenticatedController
   def index
     tasks = TaskService.fetch_today_tasks
     render inertia: 'SettingsPage', props: { tasks: tasks }
