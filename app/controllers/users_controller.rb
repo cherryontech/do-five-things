@@ -4,9 +4,15 @@ class UsersController < ApplicationController
 
     if @user.save
       sign_in(create_passwordless_session(@user)) # <-- This!
-      redirect_to(@user, flash: { notice: 'Welcome!' })
+      redirect_to root_path, intertia: { props: { message: 'Welcome!' } }
     else
-      render(:new)
+      redirect_to login_path, inertia: {
+        props: {
+          message: 'nah!',
+          errors: @user.errors,
+          user: @user
+        }
+      }, status: :unprocessable_entity
     end
   end
 end
