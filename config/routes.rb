@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  passwordless_for :users
+  passwordless_for :users, controller: 'sessions'
   # Defines the root path route ("/")
   root 'settings_page#index'
 
