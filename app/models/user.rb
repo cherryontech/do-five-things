@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   passwordless_with :email # <-- tells Passwordless which field stores the email address
 
+  has_many :goals, dependent: :destroy
+
   def current_goal
     goals.order(created_at: :desc).first || create_default_goal
   end
