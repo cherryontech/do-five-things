@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user!
-    return if Rails.env.development?
     return if current_user
 
     save_passwordless_redirect_location!(User) # <-- optional, see below

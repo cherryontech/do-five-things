@@ -59,6 +59,7 @@ group :development do
   # gem "spring"
 
   gem 'error_highlight', '>= 0.4.0', platforms: [:ruby]
+  gem 'letter_opener'
   gem 'pry-byebug'
   gem 'solargraph', require: false
   gem 'solargraph-rails', require: false
