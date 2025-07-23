@@ -11,6 +11,7 @@
     }
   },
   "labels": {
+    "appName": "Do Five Things",
     "completed": "Completed",
     "calendar": {
       "backMonth": "Go to previous month",
@@ -22,10 +23,22 @@
     "task": "Task",
     "toDo": "To do"
   },
+  "login": {
+    "intro": "Ready to tackle 5 simple tasks every day?",
+    "loginInput": {
+      "label": "Email address",
+      "button": "Login"
+    },
+    "signUpCta": {
+      "intro": "Not a member yet?",
+      "linkText": "Sign up!"
+    }
+  },
   "pageTitles": {
+    "login": "Welcome!",
+    "progress": "Progress",
     "settings": "Settings",
-    "today": "Today",
-    "progress": "Progress"
+    "today": "Today"
   },
   "nav": {
     "skipLink": "Skip to navigation",
