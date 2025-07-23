@@ -1,5 +1,5 @@
 module Tasks
-  class TodayController < ApplicationController
+  class TodayController < AuthenticatedController
     def index
       render inertia: 'TodayPage', props: { tasks: collection }
     rescue StandardError => e

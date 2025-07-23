@@ -1,4 +1,6 @@
 class Goal < ApplicationRecord
+  belongs_to :user
+
   has_many :tasks, dependent: :destroy
   has_many :daily_progs, dependent: :destroy
 

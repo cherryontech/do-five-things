@@ -10,15 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_17_005822) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_11_163006) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "counters", force: :cascade do |t|
-    t.integer "click"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "daily_progs", force: :cascade do |t|
     t.bigint "goal_id", null: false
@@ -36,6 +30,22 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_17_005822) do
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_goals_on_user_id"
+  end
+
+  create_table "passwordless_sessions", force: :cascade do |t|
+    t.string "authenticatable_type"
+    t.integer "authenticatable_id"
+    t.datetime "timeout_at", precision: nil, null: false
+    t.datetime "expires_at", precision: nil, null: false
+    t.datetime "claimed_at", precision: nil
+    t.string "token_digest", null: false
+    t.string "identifier", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["authenticatable_type", "authenticatable_id"], name: "authenticatable"
+    t.index ["identifier"], name: "index_passwordless_sessions_on_identifier", unique: true
   end
 
   create_table "task_progs", force: :cascade do |t|
@@ -63,13 +73,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_17_005822) do
   create_table "users", force: :cascade do |t|
     t.date "timezone"
     t.string "username"
-    t.string "email"
+    t.string "email", null: false
     t.boolean "show_progress", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index "lower((email)::text)", name: "index_users_on_lowercase_email", unique: true
   end
 
   add_foreign_key "daily_progs", "goals"
+  add_foreign_key "goals", "users"
   add_foreign_key "task_progs", "daily_progs"
   add_foreign_key "task_progs", "tasks"
   add_foreign_key "tasks", "goals"
