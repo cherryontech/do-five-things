@@ -1,40 +1,19 @@
 class SessionsController < Passwordless::SessionsController
-  before_action :require_unauth!, only: %i[new show]
-
-  def index
-    render inertia: 'LoginPage', props: { prop: 'random' }
-  end
+  skip_before_action :require_user
 
   def new
     render inertia: 'LoginPage', props: { prop: 'random' }
   end
 
   def show
-    render inertia: 'LoginPage', props: { prop: 'random' }
-  end
-
-  def create
-    @user = User.new(email: params[:email])
-
-    if @user.save
-      sign_in(create_passwordless_session(@user)) # <-- This!
-      redirect_to root_path, intertia: { props: { message: 'Welcome!' } }
-    else
-      redirect_to login_path, inertia: {
-        props: {
-          message: 'nah!',
-          errors: @user.errors,
-          user: @user
-        }
-      }, status: :unprocessable_entity
-    end
+    super
+    # IMPORTANT: call super to let Passwordless validate token & sign in.
+    render inertia: 'TokenPage'
   end
 
   private
 
-  def require_unauth!
-    return unless current_user
-
-    redirect_to('/', notice: 'You are already signed in.')
+  def redirect_path_after_failed_sign_in
+    users_sign_in_path
   end
 end

@@ -1,4 +1,5 @@
-class ProgressController < AuthenticatedController
+class ProgressController < ApplicationController
+  include GoalScoped
   def index
     daily_progs = @current_goal.daily_progs
     start_date = @current_goal.start_date

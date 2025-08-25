@@ -1,5 +1,5 @@
 module Tasks
-  class TodayController < AuthenticatedController
+  class TodayController < ApplicationController
     def index
       render inertia: 'TodayPage', props: { tasks: collection }
     rescue StandardError => e
@@ -20,7 +20,7 @@ module Tasks
     private
 
     def collection
-      @collection ||= TaskService.fetch_today_tasks.select { |task| task[:text].present? }
+      @collection ||= TaskService.fetch_today_tasks(current_user).select { |task| task[:text].present? }
     end
 
     def resource

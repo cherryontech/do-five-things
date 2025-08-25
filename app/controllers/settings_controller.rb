@@ -1,6 +1,7 @@
-class SettingsController < AuthenticatedController
+class SettingsController < ApplicationController
+  include GoalScoped
   def index
-    tasks = TaskService.fetch_today_tasks
+    tasks = TaskService.fetch_today_tasks(current_user)
     render inertia: 'SettingsPage', props: { tasks: tasks }
   end
 

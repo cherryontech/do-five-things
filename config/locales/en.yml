@@ -28,4 +28,8 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  passwordless:
+    mailer:
+      sign_in:
+        subject: "Sign in to Do Five Things"
+        body: "Click the link below to sign in to Do Five Things:\n\n%{magic_link}\n\nOr enter this code: %{token}\n\nThis link will expire in 15 minutes."
