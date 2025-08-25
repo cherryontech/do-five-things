@@ -20,7 +20,7 @@ module Tasks
     private
 
     def collection
-      @collection ||= TaskService.fetch_today_tasks.select { |task| task[:text].present? }
+      @collection ||= TaskService.fetch_today_tasks(current_user).select { |task| task[:text].present? }
     end
 
     def resource

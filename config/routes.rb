@@ -1,17 +1,16 @@
 Rails.application.routes.draw do
+  passwordless_for :users, controller: 'sessions'
+
+  get 'sign_up', to: 'users#new', as: :sign_up
+  post 'sign_up', to: 'users#create'
   # Defines the root path route ("/")
-  root 'settings_page#index'
-
-  get 'settings',   to: 'settings_page#index'
-  post 'settings',  to: 'settings_page#bulk_update'
-
+  root 'settings#index'
+  get 'settings',   to: 'settings#index'
+  post 'settings',  to: 'settings#bulk_update'
   get 'today',      to: 'tasks/today#index'
   patch 'today',    to: 'tasks/today#edit'
+  get 'progress',   to: 'progress#index'
 
-  get 'progress',   to: 'progress_page#index'
-
-  get 'inertia-example', to: 'inertia_example#index'
-  post 'inertia-example', to: 'inertia_example#increase_counter'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
